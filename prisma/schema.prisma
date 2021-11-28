@@ -1,0 +1,27 @@
+//settings
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  //previewFeatures = ["referentialActions"]    //check out documentation if cascade delete is desired
+}
+
+//models
+
+model User {
+    id String @id @default(uuid())
+    name String 
+    surname String
+    middlename String
+    ipn Int @unique
+    passport Int @unique
+    email String @unique
+    password String
+    birthDate DateTime?
+    registrationDate DateTime @default(now())
+    role String @default("USER")
+}
